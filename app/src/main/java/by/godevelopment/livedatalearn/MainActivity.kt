@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity() {
         liveData.value = "Hello LiveData"
 
         if (savedInstanceState == null) {
-            val firstFragment = FirstFragment(liveData)
-            val secondFragment = SecondFragment(liveData)
+            val firstFragment = FirstFragment.newInstance(liveData)
+            val secondFragment = SecondFragment.newInstance(liveData)
 
             val transaction = supportFragmentManager.beginTransaction()
             transaction.add(R.id.fragment_first, firstFragment)

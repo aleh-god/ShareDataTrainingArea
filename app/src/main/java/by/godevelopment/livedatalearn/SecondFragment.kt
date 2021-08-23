@@ -11,8 +11,9 @@ import androidx.lifecycle.Observer
 import by.godevelopment.livedatalearn.databinding.FragmentSecondBinding
 import com.google.android.material.snackbar.Snackbar
 
-class SecondFragment(private val liveData: MutableLiveData<String>) : Fragment() {
+class SecondFragment() : Fragment() {
 
+    private lateinit var liveData: MutableLiveData<String>
     private var _binding: FragmentSecondBinding? = null
     private val binding get() = _binding!!
 
@@ -40,12 +41,24 @@ class SecondFragment(private val liveData: MutableLiveData<String>) : Fragment()
 
     }
 
+    fun setLiveData(inputLiveData: MutableLiveData<String>) {
+        liveData = inputLiveData
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
     companion object {
+
+        @JvmStatic
+        fun newInstance(inputLiveData: MutableLiveData<String>) : SecondFragment {
+            val frag = SecondFragment()
+            frag.setLiveData(inputLiveData)
+            return frag
+        }
+
         private const val LOG_TAG = "myLogs"
     }
 }
